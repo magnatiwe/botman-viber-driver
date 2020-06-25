@@ -1,6 +1,7 @@
 {
   "name": "magnatiwe/botman-viber-driver",
   "license": "MIT",
+  "type": "library",
   "description": "Viber driver for BotMan",
   "keywords": [
     "Bot",
@@ -8,11 +9,11 @@
     "Viber",
     "Messenger"
   ],
-  "homepage": "https://github.com/TheArdent/botman-viber-driver",
+  "homepage": "https://github.com/magnatiwe/botman-viber-driver",
   "authors": [
     {
-      "name": "Oleksii Yaryi",
-      "email": "oleksii.yaryi@gmail.com"
+      "name": "Roman Lozovikov",
+      "email": "lozovikov.ra@gmail.com"
     }
   ],
   "require": {
