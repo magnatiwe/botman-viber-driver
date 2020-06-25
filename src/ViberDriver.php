@@ -170,7 +170,8 @@ class ViberDriver extends HttpDriver
 //                new IncomingMessage($callback->get('data'), $callback->get('from')['id'],
 //                    $callback->get('message')['chat']['id'], $callback->get('message')),
 //            ];
-        } elseif (isset($this->payload->get('message')['type'])) {
+        }
+        if (isset($this->payload->get('message')['type'])) {
             if ($this->payload->get('message')['type'] == 'text') {
                 $message = new IncomingMessage($this->payload->get('message')['text'], $user, $this->getBotId(), $this->payload);
             } elseif ($this->payload->get('message')['type'] == 'location') {
@@ -226,7 +227,11 @@ class ViberDriver extends HttpDriver
         if (count($actions) > 0 ) {
             $keyboard = new KeyboardTemplate($question->getText());
             foreach($actions as $action) {
-                $keyboard->addButton($action['text'], 'reply', $action['value'] ?? $action['text']);
+                if(isset($action['additional']['action_type'])) {
+                    $keyboard->addButton($action['text'], $action['additional']['action_type']);
+                } else {
+                    $keyboard->addButton($action['text'], 'reply', $action['value'] ?? $action['text']);
+                }
             }
             return $keyboard->jsonSerialize();
         }
